@@ -19,6 +19,8 @@ from astropy.io import fits as pyfits
 ##################
 
 
+astrometry_wcs='astrometry_wcs_wfm_2015-09-10.fits'
+
 
 FINAL=open('copia_todo.sh','w')
 
@@ -151,8 +153,8 @@ def lee_ESO_MUSE_xml(test,out):
             arreglo_HD.append(str(name))
             #print    archivo,name
             f.write(str(archivo)+' '+str(name)+' \n' )  
-        #if name=="SKY_FLAT":
-        if name=="SKYFLAT":
+#        if name=="SKY_FLAT":
+	if name=="SKYFLAT":
             arreglo.append(str(archivo))    
             arreglo_HD.append(str(name))
             #print    archivo,name
@@ -267,17 +269,17 @@ for i in range(len(archivo_xml)):
         #print 'cp '+c[j]+'.fits.fz '+Numero_OBS[i]+'/. ' 
         
         if str(c[j]).startswith("M.M"):
-            FINAL.write('cp '+c[j]+'.fits '+Numero_OBS[i]+'/.  \n' )
+            FINAL.write('cp -u '+c[j]+'.fits '+Numero_OBS[i]+'/.  \n' )
         else:    
-            FINAL.write('cp '+c[j]+'.fits.fz '+Numero_OBS[i]+'/.  \n' )
+            FINAL.write('cp -u '+c[j]+'.fits.fz '+Numero_OBS[i]+'/.  \n' )
 
     #copy of the files from the pipelines
-    FINAL.write('cp line_catalog.fits  '+Numero_OBS[i]+'/.  \n' ) 
-    FINAL.write('cp sky_lines.fits  '+Numero_OBS[i]+'/.  \n' )  
-    FINAL.write('cp  extinct_table.fits  '+Numero_OBS[i]+'/.  \n' )  
-    FINAL.write('cp filter_list.fits  '+Numero_OBS[i]+'/.  \n' )  
-    FINAL.write('cp ordena_v2.py  '+Numero_OBS[i]+'/.  \n' )  
-#    FINAL.write('cp astronomy)reference.fits  '+Numero_OBS[i]+'/.  \n' )  
+    FINAL.write('cp -u line_catalog.fits  '+Numero_OBS[i]+'/.  \n' ) 
+    FINAL.write('cp -u sky_lines.fits  '+Numero_OBS[i]+'/.  \n' )  
+    FINAL.write('cp -u extinct_table.fits  '+Numero_OBS[i]+'/.  \n' )  
+    FINAL.write('cp -u filter_list.fits  '+Numero_OBS[i]+'/.  \n' )  
+    FINAL.write('cp -u ordena_v2.py  '+Numero_OBS[i]+'/.  \n' )  
+    FINAL.write('cp '+astrometry_wcs+' '+Numero_OBS[i]+'/.  \n' )  
 
 
 FINAL.close()
